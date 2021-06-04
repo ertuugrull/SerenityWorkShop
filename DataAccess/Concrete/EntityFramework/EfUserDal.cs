@@ -1,4 +1,5 @@
 ﻿using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework.Contexts;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-   public class EfUserDal : EfEntityRepositoryBase<User, Context >,IUserDal
+    public class EfUserDal : EfEntityRepositoryBase<User, SerenityContext>, IUserDal
     {
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    interface IRepositoryBase<T>
+    public interface IRepositoryBase<T>
     {
         List<T> GetList(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter);
