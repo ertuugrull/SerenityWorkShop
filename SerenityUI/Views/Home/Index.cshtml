@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
-<table class="table table-bordered table-striped">
+<a href="@Url.Action("userAdd")" style="margin-bottom:20px" class="btn btn-success">Add User</a>
+<table class="mt-5 table table-bordered table-striped">
     <thead>
         <tr>
             <th>Name</th>
@@ -13,18 +13,24 @@
             <th>BirthDay</th>
             <th>Phone</th>
             <th>Location</th>
+            <th>Transactions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model.Users) {
-        <tr>
-            <td>@user.Name</td>
-            <td>@user.Surname</td>
-            <td>@user.Email</td>
-            <td>@user.BirthDay</td>
-            <td>@user.Phone</td>
-            <td>@user.Location</td>
-        </tr>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Surname</td>
+                <td>@user.Email</td>
+                <td>@user.BirthDay.ToShortDateString()</td>
+                <td>@user.Phone</td>
+                <td>@user.Location</td>
+                <td>
+                    <a href="@Url.Action("userEdit","Home", new {  id = user.Id })"><i title="Edit" class="glyphicon glyphicon-pencil"></i> </a>|
+                    <a href="@Url.Action("userDelete","Home", new {  id = user.Id })"><i title="Delete" class="glyphicon glyphicon-trash"></i> </a>|
+                </td>
+            </tr>
         }
     </tbody>
 </table>

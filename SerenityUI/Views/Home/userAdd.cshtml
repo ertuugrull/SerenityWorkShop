@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "userAdd";
+}
+<div class="row">
+  
+
+    <div class="col-md-6">
+
+        <p class="page-header">ADD PERSON</p> <hr />
+
+        @using (Html.BeginForm("userAdd","Home",FormMethod.Post))
+        {
+            <div class="form-group">
+                <input type="text" name="Name" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="text" name="Surname" class="form-control" placeholder="Surname">
+            </div>
+            <div class="form-group">
+                <input type="text" name="Email" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="date" name="BirthDay" class="form-control" placeholder="BirthDay">
+            </div>
+            <div class="form-group">
+                <input type="text" name="Phone" class="form-control" placeholder="Phone">
+            </div>
+            <div class="form-group">
+                <input type="text" name="Location" class="form-control" placeholder="Location">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Create" >
+            </div>
+        }
+    </div>
+
+</div>

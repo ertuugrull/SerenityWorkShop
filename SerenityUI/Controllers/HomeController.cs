@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entities.Concrete;
 using SerenityUI.Models;
 using System;
 using System.Collections.Generic;
@@ -24,16 +25,35 @@ namespace SerenityUI.Controllers
             return View(model);
         }
 
-        public ActionResult About()
+        [HttpGet]
+        public ActionResult userAdd()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
-
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult userAdd(User user)
         {
-            ViewBag.Message = "Your contact page.";
+            _userService.Add(user);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult userEdit(int Id)
+        {
+            var model = new UserListViewModel();
+            model.User = _userService.GetUser(Id);
+
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult userEdit(User user)
+        {
+
+            return RedirectToAction("");
+        }
+        public ActionResult userDelete()
+        {
+            
 
             return View();
         }
