@@ -46,9 +46,9 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                return filter == null ?
-                context.Set<TEntity>().ToList() :
-                context.Set<TEntity>().Where(filter).ToList();
+                if (filter == null)
+                    return context.Set<TEntity>().ToList(); 
+                return context.Set<TEntity>().Where(filter).ToList();
 
             }
 

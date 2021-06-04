@@ -10,6 +10,12 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 {
     public class SerenityContext : DbContext
     {
+ 
+    public SerenityContext() : base("name=SerenityContext")
+        {
+            var ensureDLLIsCopied =
+                    System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+        }
         public DbSet<User> Users { get; set; }
     }
 }

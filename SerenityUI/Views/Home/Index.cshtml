@@ -1,0 +1,30 @@
+﻿@model SerenityUI.Models.UserListViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>E-mail</th>
+            <th>BirthDay</th>
+            <th>Phone</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users) {
+        <tr>
+            <td>@user.Name</td>
+            <td>@user.Surname</td>
+            <td>@user.Email</td>
+            <td>@user.BirthDay</td>
+            <td>@user.Phone</td>
+            <td>@user.Location</td>
+        </tr>
+        }
+    </tbody>
+</table>
