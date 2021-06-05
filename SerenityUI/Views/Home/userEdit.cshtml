@@ -1,11 +1,10 @@
-﻿@model SerenityUI.Models.UserListViewModel
+﻿@model Entities.Concrete.User
 
 @{
     ViewBag.Title = "userUpdate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>userUpdate</h2>
 
 @using (Html.BeginForm())
 {
@@ -42,7 +41,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BirthDay, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BirthDay, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.BirthDay.ToString("MM-dd-yyyy"), new { htmlAttributes = new { @class = "form-control", type = "date" } })*@
+                <input type="date" value="@Model.BirthDay.ToString("yyyy-MM-dd")" name="BirthDay" class="form-control" placeholder="BirthDay">
+
                 @Html.ValidationMessageFor(model => model.BirthDay, "", new { @class = "text-danger" })
             </div>
         </div>

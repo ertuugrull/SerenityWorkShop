@@ -28,9 +28,43 @@
                 <td>@user.Location</td>
                 <td>
                     <a href="@Url.Action("userEdit","Home", new {  id = user.Id })"><i title="Edit" class="glyphicon glyphicon-pencil"></i> </a>|
-                    <a href="@Url.Action("userDelete","Home", new {  id = user.Id })"><i title="Delete" class="glyphicon glyphicon-trash"></i> </a>|
+                    <a href="@Url.Action("userDelete","Home", new {  id = user.Id })" name="@user.Id"><i title="Delete" class="glyphicon glyphicon-trash"></i> </a>|
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<script>
+    $(".delete").click(function () {
+        var delete1 = $(this)
+        var id1 = $(this).attr('name')
+        toastr.info("<br/><button type='button' id='confirmationRevertYes' class='btn btn-warning'>Evet</button>", 'Do you want to sure about delete?',
+            {
+                closeButton: true,
+                allowHtml: true,
+                progressBar: true,
+                onShown: function (toast) {
+                    $("#confirmationRevertYes").click(function () {
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            url: "/Home/userDelete/" + id1,
+                            success: function (result) {
+                                console.log(result);
+                                if (result == true) {
+                                    $(delete1).parent('td').parent('tr').remove();
+                                    toastr.success("Duyuru Başarıyla Silindi.", 'Başarılı!', { timeOut: 5000 });
+                                } else {
+                                    toastr.error("Opps! Hatalı İşlem, Tekrar Deneyin.", 'Hata!', { timeOut: 5000 });
+                                }
+                            }
+
+                        });
+
+                    });
+                }
+            });
+    })
+
+</script>

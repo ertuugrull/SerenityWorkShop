@@ -40,8 +40,7 @@ namespace SerenityUI.Controllers
         [HttpGet]
         public ActionResult userEdit(int Id)
         {
-            var model = new UserListViewModel();
-            model.User = _userService.GetUser(Id);
+            var model = _userService.GetUser(Id);
 
             return View(model);
         }
@@ -51,11 +50,10 @@ namespace SerenityUI.Controllers
 
             return RedirectToAction("");
         }
-        public ActionResult userDelete()
+        public JsonResult userDelete(int id)
         {
-            
-
-            return View();
+            _userService.Delete(id);
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }
