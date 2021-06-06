@@ -28,7 +28,7 @@
                 <td>@user.Location</td>
                 <td>
                     <a href="@Url.Action("userEdit","Home", new {  id = user.Id })"><i title="Edit" class="glyphicon glyphicon-pencil"></i> </a>|
-                    <a href="@Url.Action("userDelete","Home", new {  id = user.Id })" name="@user.Id"><i title="Delete" class="glyphicon glyphicon-trash"></i> </a>|
+                    <a href="#" class="glyphicon glyphicon-trash delete" name="@user.Id"> </a>|
                 </td>
             </tr>
         }
