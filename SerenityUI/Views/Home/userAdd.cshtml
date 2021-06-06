@@ -3,34 +3,58 @@
     ViewBag.Title = "userAdd";
 }
 <div class="row">
-  
+
 
     <div class="col-md-6">
 
         <p class="page-header">ADD PERSON</p> <hr />
 
-        @using (Html.BeginForm("userAdd","Home",FormMethod.Post))
+        @using (Html.BeginForm("userAdd", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="form-group">
-                <input type="text" name="Name" class="form-control" placeholder="Username">
+                <label for="Name">Name</label>
+                <input type="text" name="Name" class="form-control" placeholder="Name">
+                @Html.ValidationMessage("Name", "", new { @class = "text-danger" })
+
+
             </div>
             <div class="form-group">
+                <label for="Surname">Surname</label>
                 <input type="text" name="Surname" class="form-control" placeholder="Surname">
+                @Html.ValidationMessage("Surname", "", new { @class = "text-danger" })
+
             </div>
             <div class="form-group">
+                <label for="Email">Email</label>
                 <input type="text" name="Email" class="form-control" placeholder="Email">
+                @Html.ValidationMessage("Email", "", new { @class = "text-danger" })
+
             </div>
             <div class="form-group">
+                <label for="BirthDay">BirthDay</label>
                 <input type="date" name="BirthDay" class="form-control" placeholder="BirthDay">
+                @Html.ValidationMessage("BirthDay", "", new { @class = "text-danger" })
+
             </div>
             <div class="form-group">
+                <label for="Phone">Phone</label>
                 <input type="text" name="Phone" class="form-control" placeholder="Phone">
+                @Html.ValidationMessage("Phone", "", new { @class = "text-danger" })
+
             </div>
             <div class="form-group">
+                <label for="Location">Location</label>
                 <input type="text" name="Location" class="form-control" placeholder="Location">
+                @Html.ValidationMessage("Location", "", new { @class = "text-danger" })
+
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-default" value="Create" >
+                <label for="FilePhoto">Choose Photo</label>
+                <input type="file" name="FilePhoto" class="form-control">
+
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Create">
             </div>
         }
     </div>

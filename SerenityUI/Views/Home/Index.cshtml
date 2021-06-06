@@ -13,24 +13,28 @@
             <th>BirthDay</th>
             <th>Phone</th>
             <th>Location</th>
+            <th>Photo</th>
             <th>Transactions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var user in Model.Users)
         {
-            <tr>
-                <td>@user.Name</td>
-                <td>@user.Surname</td>
-                <td>@user.Email</td>
-                <td>@user.BirthDay.ToShortDateString()</td>
-                <td>@user.Phone</td>
-                <td>@user.Location</td>
-                <td>
-                    <a href="@Url.Action("userEdit","Home", new {  id = user.Id })"><i title="Edit" class="glyphicon glyphicon-pencil"></i> </a>|
-                    <a href="#" class="glyphicon glyphicon-trash delete" name="@user.Id"> </a>|
-                </td>
-            </tr>
+        <tr>
+            <td>@user.Name</td>
+            <td>@user.Surname</td>
+            <td>@user.Email</td>
+            <td>@user.BirthDay.ToShortDateString()</td>
+            <td>@user.Phone</td>
+            <td>@user.Location</td>
+            <td>
+                <img src="~/UploadedFiles/@user.FilePhoto" alt="" height=100 width=200 />
+            </td>
+            <td>
+                <a href="@Url.Action("userEdit","Home", new {  id = user.Id })"><i title="Edit" class="glyphicon glyphicon-pencil"></i> </a>|
+                <a href="#" class="glyphicon glyphicon-trash delete" name="@user.Id"> </a>|
+            </td>
+        </tr>
         }
     </tbody>
 </table>

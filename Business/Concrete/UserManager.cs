@@ -19,7 +19,9 @@ namespace Business.Concrete
         }
 
         public void Add(User user)
+        
         {
+
             _userDal.Add(user);
         }
 

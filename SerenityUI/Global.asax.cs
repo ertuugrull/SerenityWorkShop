@@ -17,6 +17,7 @@ namespace SerenityUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Business.UnityConfig.RegisterComponents();
+
         }
     }
 }

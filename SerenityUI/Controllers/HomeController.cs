@@ -3,6 +3,7 @@ using Entities.Concrete;
 using SerenityUI.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,10 +32,21 @@ namespace SerenityUI.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult userAdd(User user)
+        public ActionResult userAdd(User user, HttpPostedFileBase FilePhoto)
         {
-            _userService.Add(user);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (FilePhoto != null && FilePhoto.ContentType=="image/jpeg")
+                {
+                    string path = Path.Combine(Server.MapPath("~/UploadedFiles"),user.Name.ToLower() + "_" + user.Surname.ToLower() + ".jpeg");
+                    user.FilePhoto = user.Name.ToLower() + "_" + user.Surname.ToLower() + ".jpeg";
+                    FilePhoto.SaveAs(path);
+                }
+                _userService.Add(user);
+                return RedirectToAction("Index");
+            }
+            return View();
+            
         }
 
         [HttpGet]
