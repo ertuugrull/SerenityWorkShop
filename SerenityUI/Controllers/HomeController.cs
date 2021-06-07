@@ -57,10 +57,20 @@ namespace SerenityUI.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult userEdit(User user)
+        public ActionResult userEdit(User user, HttpPostedFileBase FilePhoto)
         {
-
-            return RedirectToAction("");
+            if (ModelState.IsValid)
+            {
+                if (FilePhoto != null && FilePhoto.ContentType == "image/jpeg")
+                {
+                    string path = Path.Combine(Server.MapPath("~/UploadedFiles"), user.Name.ToLower() + "_" + user.Surname.ToLower() + ".jpeg");
+                    user.FilePhoto = user.Name.ToLower() + "_" + user.Surname.ToLower() + ".jpeg";
+                    FilePhoto.SaveAs(path);
+                }
+                _userService.Update(user);
+                return RedirectToAction("Index");
+            }
+            return View();
         }
         public JsonResult userDelete(int id)
         {
